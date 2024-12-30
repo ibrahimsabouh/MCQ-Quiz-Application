@@ -88,7 +88,6 @@ class QuizApp:
                 st.session_state.quiz_data = self.parse_quiz(questions_text)
                 st.session_state.user_answers = [None] * len(st.session_state.quiz_data)
                 st.session_state.quiz_generated = True
-                # st.success("Quiz generated successfully! Scroll down to start.")
             else:
                 st.error("Failed to generate quiz. Please try again.")
         except Exception as e:
@@ -110,25 +109,8 @@ class QuizApp:
                 )
             st.markdown("---")
 
-    # def calculate_score(self):
-    #     """Calculate the quiz score"""
-    #     correct_count = 0
-    #     for question, answer in zip(st.session_state.quiz_data, st.session_state.user_answers):
-    #         if answer and answer[0] == question["correct"]:
-    #             correct_count += 1
-    #     return correct_count, (correct_count / len(st.session_state.quiz_data)) * 100
-
     def display_results(self):
         """Display quiz results"""
-    #     correct_count, score_percentage = self.calculate_score()
-    #     
-    #     st.markdown(f"""
-    #         <div style='text-align: center; padding: 20px; border-radius: 10px; background-color: #f0f2f6;'>
-    #             <h2>Quiz Complete! 🎉</h2>
-    #             <h3>Your Score: {correct_count}/{len(st.session_state.quiz_data)} ({score_percentage:.1f}%)</h3>
-    #         </div>
-    #     """, unsafe_allow_html=True)
-
         for i, (question, answer) in enumerate(zip(st.session_state.quiz_data, st.session_state.user_answers)):
             selected_letter = answer[0] if answer else "No answer"
             is_correct = answer and answer[0] == question["correct"]
